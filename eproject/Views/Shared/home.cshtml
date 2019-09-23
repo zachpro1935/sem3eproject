@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&amp;subset=vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+
+    <script type="text/javascript" src="~/vendor/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="~/vendor/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/vendor/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/1.js"></script>
+
+    <link rel="stylesheet" href="~/vendor/bootstrap.css">
+    <link rel="stylesheet" href="~/vendor/font-awesome.css">
+    <link rel="stylesheet" href="~/1.css">
+    <link rel="stylesheet" href="~/dist/starrr.css">
+</head>
+<body>
+
+    <div class="topheader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 wow jello">
+                    <div class="mangxh float-sm-left text-xs-center text-sm-left">
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-pinterest"></i></a>
+                        <a href=""><i class="fa fa-google-plus"></i></a>
+                    </div>
+                    <div class="datban">
+                        Click for Register: +011 29 345 678
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <div class="datban openingtop float-sm-right text-sm-left text-xs-center">
+                        Opening Hours : 9:00am - 10:00pm
+                    </div>
+                </div>
+            </div> <!-- het row -->
+        </div> <!-- het container -->
+    </div> <!-- het topheader  -->
+
+    <div class="logovamenu">
+        <nav class="navbar navbar-light  fontroboto">
+            <div class="container">
+                <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#mtren">
+                </button>
+                <div class="collapse navbar-toggleable-xs" id="mtren">
+                    <a class="navbar-brand text-xs-center text-sm-left" href="@Url.Action("index","home")"><img src="/images/logo.png" alt=""></a>
+
+                    <ul class="nav navbar-nav float-sm-right">
+                        <li class="nav-item active">
+                            @Html.ActionLink("Home", "index", "home", null, htmlAttributes: new { @class = "nav-link" })
+
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Recipe", "index", "recipes", null, htmlAttributes: new { @class = "nav-link" })
+
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Contest", "index", "contest", null, htmlAttributes: new { @class = "nav-link" })
+
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("About Us", "Aboutus", "home", null, htmlAttributes: new { @class = "nav-link" })
+
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("FAQ", "FAQ", "home", null, htmlAttributes: new { @class = "nav-link" })
+
+                        </li>
+
+                        @if (Session["userId"] != null)
+                        {
+                            <li class="nav-item">
+
+                                @Html.ActionLink(Session["email"].ToString(), "edit", "users", new { id = Session["userId"] }, htmlAttributes: new { @class = "nav-link" })
+                            </li>
+                        }
+                        <li class="nav-item datbanmenu">
+                            @if (Session["userId"] != null)
+                            {
+                                @Html.ActionLink("LOGOUT", "logout", "users", null, htmlAttributes: new { @class = "nav-link btn btn-warning wow bounce" })
+
+
+                            }
+                            @if (Session["userId"] == null)
+                            {
+                                if (ViewContext.RouteData.Values["action"].ToString() == "login")
+                                {
+                                    @Html.ActionLink("REGISTER", "create", "users", null, htmlAttributes: new { @class = "nav-link btn btn-warning wow bounce" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("LOGIN", "login", "users", null, htmlAttributes: new { @class = "nav-link btn btn-warning wow bounce" })
+                                }
+
+                            }
+
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- het container -->
+        </nav>
+    </div> <!-- het logo va menu -->
+
+
+    @RenderBody()
+
+
+
+
+    <div class="footertop">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 cotf1 mb-2 wow fadeInUp" data-wow-delay="0s">
+                    <a href=""><img src="/images/logofoot.png" alt="" class="logof"></a>
+                    <p>Marsh mallow muffin soufflé jelly-o tart cake Marshmallow macaroon jelly jubes dont tiramisu croissant cake.</p>
+                    <div class="motdong">
+                        <i class="fa fa-paper-plane-o"></i>
+                        <span class="textmd">
+                            Address : 44 New Design Street,<br>
+                            Melbourne 005
+                        </span>
+                    </div>
+                    <div class="motdong">
+                        <i class="fa fa-phone"></i>
+                        <span class="textmd">Phone : (01) 800 433 633</span>
+                    </div>
+                    <div class="motdong">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="textmd">Email : info@Example.com</span>
+                    </div>
+
+
+                </div>  <!-- HET COTF1 -->
+                <div class="col-sm-2 push-sm-1 cotf2 mb-2  wow fadeInUp" data-wow-delay="0.1s">
+                    <h2 class="tdft">Userfull Link </h2>
+                    <ul>
+                        <li><a href="">About company </a></li>
+                        <li><a href="">REGISTER  </a></li>
+                        <li><a href="">Help center  </a></li>
+                        <li><a href="">Our Blog  </a></li>
+                        <li><a href="">Careers  </a></li>
+                        <li><a href="">Contact us  </a></li>
+                    </ul>
+                </div>  <!-- HET COTF2 -->
+                <div class="col-sm-3  cotf3 mb-2 wow  fadeInUp" data-wow-delay="0.2s">
+                    <h2 class="tdft">Userfull Link 2 </h2>
+                    <ul>
+                        <li><a href="">About company </a></li>
+                        <li><a href="">REGISTER  </a></li>
+                        <li><a href="">Help center  </a></li>
+                        <li><a href="">Our Blog  </a></li>
+                        <li><a href="">Careers  </a></li>
+                        <li><a href="">Contact us  </a></li>
+                    </ul>
+                </div>  <!-- HET COTF3 -->
+                <div class="col-sm-3  cotf4 wow  fadeInUp" data-wow-delay="0.3s">
+                    <h2 class="tdft">Openning hours </h2>
+                    <div class="openning1">
+                        <div class="phai float-xs-right">9:00 am - 23:00 pm</div>
+                        <div class="trai">Mon — Fri</div>
+                    </div>
+                    <div class="openning1">
+                        <div class="phai float-xs-right">10:00 am - 23:00 pm</div>
+                        <div class="trai">Saturday </div>
+                    </div>
+                    <div class="openning1">
+                        <div class="phai float-xs-right">10:00 am - 23:00 pm</div>
+                        <div class="trai">Sunday   </div>
+                    </div>
+
+                    <p>Note: Arctica Restaurant is closed on holidays.</p>
+                </div>  <!-- HET COTF4 -->
+
+            </div>
+        </div>
+    </div>  <!-- HET FOOTERTOP -->
+
+    <div class="footerbottom text-xs-center fontroboto wow  fadeInUp" data-wow-delay="0s">
+        Copyrights © 2015  All Rights Reserved.
+    </div>
+
+</body>
+</html>

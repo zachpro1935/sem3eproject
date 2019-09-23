@@ -1,0 +1,40 @@
+﻿@model eproject.Models.Contest
+
+@{
+    ViewBag.Title = "Readmore";
+    Layout = "~/Views/Shared/home.cshtml";
+}
+<div class="contest">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 wow flipInY">
+                <div>
+
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <h3>@Html.DisplayFor(model => model.name)</h3>
+                        <br />                      
+                        <dd>
+                            @Html.Raw(Model.content)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.startDate) - @Html.DisplayNameFor(model => model.endDate) : @Html.DisplayFor(model => model.startDate) - @Html.DisplayFor(model => model.endDate)
+                        </dt>
+                    </dl>
+                </div>
+                <p>
+                    @if (Model.startDate <= DateTime.Today && Model.endDate > DateTime.Today)
+                    {
+                        @Html.ActionLink("Join", "Create", "Recipes", new { id = Model.id }, new { @class = "btn btn-success" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Join", "Create", "Recipes", null, new { @class = "btn btn-success disabled" })
+                    }
+                    <br /><br />
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

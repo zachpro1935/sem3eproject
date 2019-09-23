@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&amp;subset=vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+
+    <script type="text/javascript" src="~/vendor/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="~/vendor/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/vendor/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/1.js"></script>
+
+    <link rel="stylesheet" href="~/vendor/bootstrap.css">
+    <link rel="stylesheet" href="~/vendor/font-awesome.css">
+    <link rel="stylesheet" href="~/1.css">
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/sb-admin.css" rel="stylesheet">
+</head>
+<body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <!-- Navbar -->
+        <ul class="navbar-nav ml-auto ml-md-0">
+
+            <li class="nav-item">
+                @Html.ActionLink("LOGOUT", "logout", "users", null, htmlAttributes: new { @class = "nav-link btn btn-primary wow bounce" })
+
+
+            </li>
+        </ul>
+    </nav>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("USER", "user", "admin", null, htmlAttributes: new { @class = "nav-link", @style = "margin-left: 1rem" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("RECIPE", "recipe", "admin", null, htmlAttributes: new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("CONTEST", "contestIndex", "admin", null, htmlAttributes: new { @class = "nav-link" })
+            </li>.
+            <li class="nav-item">
+                @Html.ActionLink("REPORT", "report", "admin", null, htmlAttributes: new { @class = "nav-link" })
+            </li>
+
+        </ul>
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                @RenderBody()
+
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Your Website 2019</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</body>
+</html>

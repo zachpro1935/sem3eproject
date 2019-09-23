@@ -1,0 +1,59 @@
+﻿@model IEnumerable<eproject.Models.Recipe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/home.cshtml";
+}
+<div>
+    <h3 style="text-align:center;">
+        @using (Html.BeginForm())
+        {
+            <input type="text" name="name" value="" id="name" placeholder="Find a recipe" class="rounded" />
+            <input type="submit" name="name" value="Filter" class="btn btn-info" />
+        }
+    </h3>
+</div>
+@*<h2 style="text-align:center; color:orange; text-decoration:none;">
+        @Html.ActionLink("Write Your Recipe", "Create")<br /><hr /><br />
+    </h2>*@
+
+<div class="container ">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-3 wow flipInY">
+                <a href="~/recipeExtend/recipeDetail/@item.id"><img src="~/images/@item.image" alt="" width="100%" height="250"></a>
+                <div class='starrr' data-rate="@item.rate"></div>
+                <h3 style="text-align:center; width:250px; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;">
+                    <a style="color:orange;" href="~/recipeExtend/recipeDetail/@item.id">@item.name</a>
+                </h3>
+                <p style="text-align:center; color:darkcyan">@item.category</p>
+                @*<p style="text-align:center; width:250px; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;">@item.content</p>*@
+                <p style="text-align:center;">By @item.User.name</p>
+
+                @*<a href="" class="readmore">@Html.ActionLink("Details", "Details", new { id = item.id })</a>*@
+            </div>
+
+            /**/
+
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+
+        }
+    </div>
+</div>
+<br />
+<script src="~/dist/starrr.js"></script>
+<script>
+    $('.starrr').each(function () {
+         $(this).starrr({
+        rating:  $(this).attr('data-rate'),
+        readOnly: true,
+         });
+
+    })
+   
+
+</script>

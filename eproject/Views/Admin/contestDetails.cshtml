@@ -1,0 +1,31 @@
+﻿@model eproject.Models.Contest
+@{
+    ViewBag.Title = "contestDetails";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<h2>Contest Details</h2>
+<div>
+    <hr />
+    <br />
+    <div class="contest">
+        <dl class="dl-horizontal">
+            <h3>@Html.DisplayFor(model => model.name)</h3>
+            <br />
+            <dd>
+                @Html.Raw(Model.content)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.createAt) : @Html.DisplayFor(model => model.createAt)
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.startDate) - @Html.DisplayNameFor(model => model.endDate) :
+                @Html.DisplayFor(model => model.startDate) -  @Html.DisplayFor(model => model.endDate)
+            </dt>
+        </dl>
+        <p>
+            @Html.ActionLink("Back to List", "contestIndex")
+        </p>
+    </div>
+</div>
+
+

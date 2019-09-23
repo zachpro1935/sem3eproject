@@ -1,0 +1,71 @@
+﻿@model eproject.Models.Contest
+@{
+                ViewBag.Title = "contestEdit";
+                Layout = "~/Views/Shared/Admin.cshtml";
+}
+<h2>Edit Contest</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <b>@Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })</b>
+            <div class="col-md">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.createAt)
+        </div>
+
+        <div class="form-group">
+            <b>@Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })</b>
+            <div class="col-md">
+                @Html.TextBoxFor(model => model.startDate, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control" } })  
+                <br />
+                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>@Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })</b>
+            <div class="col-md">
+                @Html.TextBoxFor(model => model.endDate, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>@Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })</b>
+            <div class="col-md">
+                @Html.TextAreaFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" style="margin-left:560px"/>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "contestIndex")
+</div>
+
+<script src="~/Scripts/tinymce/tinymce.js"></script>
+<script>tinymce.init({ selector: '#content' });</script>
+
+

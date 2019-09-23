@@ -1,0 +1,40 @@
+﻿@model eproject.Models.Contest
+@{
+    ViewBag.Title = "contestDelete";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Delete Contest</h2>
+<div>
+    <hr />
+    <h4>Are you sure you want to delete @Html.DisplayFor(model => model.name) ?</h4>
+    <br />
+    <div class="contest">
+        <dl class="dl-horizontal">
+            <dd>
+                @Html.Raw(Model.content)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.createAt) : @Html.DisplayFor(model => model.createAt)
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.startDate) - @Html.DisplayNameFor(model => model.endDate) :
+                @Html.DisplayFor(model => model.startDate) -  @Html.DisplayFor(model => model.endDate)
+            </dt>
+        </dl>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" style="margin-left:560px"/>
+        </div>
+    }
+    <br />
+    <div>
+        @Html.ActionLink("Back to List", "contestIndex")
+    </div>
+</div>
+

@@ -1,0 +1,220 @@
+﻿@model eproject.Models.Recipe
+@{
+    /**/
+
+    ViewBag.Title = "Recipe";
+    Layout = "~/Views/Shared/home.cshtml";
+}
+<style>
+    a.float-right.btn.text-white.btn-danger.right_custom {
+        float: right;
+        padding-right: 20px;
+        margin-right: 10px;
+    }
+
+    .card-body {
+        height: 90%;
+    }
+
+    .cangiua {
+        text-align: center;
+    }
+
+    .splq {
+        height: 150px;
+        width: 200px;
+    }
+</style>
+<div class="tieudenews">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-xs-center wow  flipInY" data-wow-delay="0s">
+                <div class="tdtintuchome">
+                    <span class="fontdancing">@Model.name</span>
+                    <h2 class="fontroboto">News Detail</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HET TIEU DE DE NEWS -->
+<section class="noidungtin">
+    <div class="container">
+        <div class='starrr'></div>
+        <span>(@ViewBag.rateCount rate)</span>
+        <p>View by : @Model.viewCount</p>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="mottinchuan mb-3  wow  fadeInUp fontroboto">
+
+                    <a href=""><img src="~/images/@Model.image" alt=""></a>
+                    <a href="" class="tieudetin1 fontoswarld">The Best Tips For Tasty Food</a>
+                    <div class="ngaythang1">@Html.DisplayFor(m => m.createAt) <span class="vang"> @ViewBag.manager</span></div>
+                    <p>
+                        @Html.Raw(Model.content)
+
+                    </p>
+                </div>
+            </div>
+            <!-- HET COT 9 -->
+        </div>
+    </div>
+
+</section>
+<!--  het noidung tin -->
+<!-- HIEN THI DANH GIA -->
+<div class="container">
+    <h2 class="text-center">Comment</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+
+                @foreach (var item in ViewBag.comment)
+                {
+                    <div class="col-md-2">
+                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                        <p class="text-secondary text-center">@item.ago</p>
+                    </div>
+
+                    <div class="col-md-10">
+                        @if (Session["userId"] != null && Session["userId"].ToString() == item.own.ToString())
+                        {
+                            <p>
+                                <a class="float-right btn text-white btn-danger right_custom" href="@Url.Action("deleteComment", "RecipeExtend", new { id = item.id,recipeId=Model.id })">
+                                    <i class="fa fa-heart"></i> DELETE
+                                </a>
+                            </p>
+                        }
+                        <p>
+                            <a class="float-left" href="#">
+                                <strong>
+                                    @item.name
+                                </strong>
+                            </a>
+                        </p>
+                        <div class="clearfix"></div>
+
+                        @item.content
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HET HIEN THI DANH GIA -->
+<!-- KHACH COMMENT -->
+<div class="container">
+
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"></label>
+        <textarea class="form-control" id="abc" rows="3" name="abc"></textarea>
+    </div>
+    <button name="" id="commentsend" class="btn btn-primary" value="COMMENT">COMMENT</button>
+
+</div>
+<!--HET KHACH COMMENT -->
+<!-- Ba DIch Vu -->
+<div class="badichvu badichvuabout">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 text-xs-center">
+                <div class="tdtintuchome">
+                    <span class="fontdancing">Our Service</span>
+                    <h2 class="fontroboto">We Create Delicous Memory</h2>
+                </div>
+            </div>
+            @foreach (var recipe in ViewBag.relate)
+            {
+                <div class="col-sm-4 wow flipInY text-xs-center">
+                    <a href="@Url.Action("recipeDetail","RecipeExtend", new {id = recipe.id })"><img src="~/images/@recipe.image" alt="" class="img-fluid"></a>
+                    <h3><a href="">@recipe.name</a></h3>
+                    @*<p>@recipe.content<p>*@
+                    @Html.ActionLink("Read More", "recipeDetail", "RecipeExtend", new { id = recipe.id }, htmlAttributes: new { @class = "readmore vang" })
+
+                </div>
+
+            }
+        </div>
+
+        <!-- het row -->
+    </div>
+    <!--  het container -->
+</div>
+<!-- het badichvu -->
+<!-- ba dich vu 2 -->
+@*<div class="badichvu">
+        <div class="container ">
+            <div class="row">
+                <div class="col-sm-4 wow flipInY">
+                    <a href=""><img src="images/3dichvu.jpg" alt="" class="img-fluid"></a>
+                    <h3><a href="">Our Restaruant Story</a></h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus errorsit voluptatem accusantium doloremque laudantium thes hatles tooest surf totam rem aperiam.</p>
+                    <a href="" class="readmore">Read More</a>
+                </div>
+                <div class="col-sm-4 wow flipInY" data-wow-delay="0.2s">
+                    <a href=""><img src="images/3dichvu.jpg" alt="" class="img-fluid"></a>
+                    <h3><a href="">Our Restaruant Story</a></h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus errorsit voluptatem accusantium doloremque laudantium thes hatles tooest surf totam rem aperiam.</p>
+                    <a href="" class="readmore">Read More</a>
+                </div>
+                <div class="col-sm-4 wow flipInY" data-wow-delay="0.4s">
+                    <a href=""><img src="images/3dichvu.jpg" alt="" class="img-fluid"></a>
+                    <h3><a href="">Our Restaruant Story</a></h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus errorsit voluptatem accusantium doloremque laudantium thes hatles tooest surf totam rem aperiam.</p>
+                    <a href="" class="readmore">Read More</a>
+                </div>
+            </div>
+             het row
+        </div>
+          het container
+    </div>*@
+<script src="~/dist/starrr.js"></script>
+<script>
+    $('.starrr').starrr({
+        rating: @ViewBag.rate,
+        change: function (e, value) {
+            // alert('new rating is ' + value)
+            $.ajax({
+                url: '@Url.Action("rate","RecipeExtend")',
+                type: 'POST',
+                data: {
+                    ratting: value,
+                    user: '@Session["userId"]',
+                    recipe: '@ViewBag.recipeId'
+                },
+                success: function (data) {
+                    alert(data.responseText)
+                    location.reload();
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        }
+    });
+
+    $('#commentsend').click(function () {
+         $.ajax({
+                url: '@Url.Action("createcomment","RecipeExtend")',
+                type: 'POST',
+             data: {
+                 content: $('#abc').val(),
+                    user: '@Session["userId"]',
+                    recipe:'@ViewBag.recipeId'
+                },
+             success: function (data) {
+                 if (data.success == false) {
+                     alert(data.responseText)
+                 } else
+                    location.reload();
+                        },
+                error: function () {
+                            alert("error");
+                        }
+                    });
+
+});
+</script>

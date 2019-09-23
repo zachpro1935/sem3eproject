@@ -1,0 +1,48 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&amp;subset=vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/vendor/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="/vendor/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="/vendor/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="/1.js"></script>
+
+    <link rel="stylesheet" href="/vendor/bootstrap.css">
+    <link rel="stylesheet" href="/vendor/font-awesome.css">
+    <link rel="stylesheet" href="/1.css">
+</head>
+<body>
+    <div class="logovamenu">
+        <nav class="navbar navbar-light  fontroboto">
+            <div class="container">
+                <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#mtren">
+                </button>
+                <div class="collapse navbar-toggleable-xs" id="mtren">
+                    <a class="navbar-brand text-xs-center text-sm-left" href="#"><img src="/images/logo.png" alt=""></a>
+                </div>
+            </div> <!-- het container -->
+        </nav>
+    </div> <!-- het logo va menu -->
+    <div class="badichvu">
+        <div class="container ">
+            <div class="row">
+                <div class="col-sm-12 wow flipInY">
+
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

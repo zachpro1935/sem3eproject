@@ -1,0 +1,80 @@
+﻿@model IEnumerable<eproject.Models.Recipe>
+
+@{
+    ViewBag.Title = "editRecipe";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        <input name="search" id="search" class="" type="text" value="">
+        <input name="" id="" class="btn btn-primary" type="submit" value="search">
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enabled)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.manager)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enabled)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.manager)
+            </td>
+            <td>
+                @if (item.enabled == true)
+                {
+                    @Html.ActionLink("Disabled", "editRecipe", new { id = item.id, enabled = false })
+                }
+                else
+                {
+                    @Html.ActionLink("Enabled", "editRecipe", new { id = item.id, enabled = true })
+                }|| @Html.ActionLink("Detail", "recipeDetail", "recipeExtend", new { id = item.id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

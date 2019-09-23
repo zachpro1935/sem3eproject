@@ -1,0 +1,84 @@
+﻿@model eproject.Models.Recipe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/home.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recipe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.id })|
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id })|
+    @Html.ActionLink("Back to List", "Index")
+</p>

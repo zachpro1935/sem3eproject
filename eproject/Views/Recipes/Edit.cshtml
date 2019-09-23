@@ -1,0 +1,95 @@
+﻿@model eproject.Models.Recipe
+
+@{
+    /**/
+
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/home.cshtml";
+}
+<div class="badichvu">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 wow flipInY">
+                <h2>Edit</h2>
+                @using (Html.BeginForm("Edit", "Recipes", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.createAt)
+                    @Html.HiddenFor(model => model.enabled)
+                    @Html.HiddenFor(model => model.image)
+                    @Html.HiddenFor(model => model.manager)
+             
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @*<h4>Recipe</h4>*@
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                Recipe's Name
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                Category
+                                @Html.DropDownList("category", new List<SelectListItem>
+                               {
+                               new SelectListItem { Text = "Breakfast and Brunch", Value = "Breakfast and Brunch" },
+                               new SelectListItem { Text = "Lunch", Value = "Lunch" },
+                               new SelectListItem { Text = "Dinners", Value = "Dinners" },
+                               new SelectListItem { Text = "Desserts", Value = "Desserts" },
+                               },
+                               htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <b>@Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                            <div class="col-md">
+                                @Html.TextAreaFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                Type
+                                @Html.DropDownList("type", new List<SelectListItem>
+                               {
+                               new SelectListItem { Text = "Free", Value = "Free" },
+                               new SelectListItem { Text = "Member", Value = "Member" },
+                               },
+                               htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                Choose Image
+                                <input type="file" name="file" id="file" class="form-control" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="text-align:center;">
+                                <input type="submit" value="Edit" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/tinymce/tinymce.js"></script>
+<script>tinymce.init({ selector: '#content' });</script>

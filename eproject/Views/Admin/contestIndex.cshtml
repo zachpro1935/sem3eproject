@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<eproject.Models.Contest>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "contestIndex";
+    Layout = "~/Views/Shared/admin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div class="createcontest">
+    @Html.ActionLink("Create New", "contestCreate", null, new { @class = "btn btn-primary" })
+</div>
+
+<br /><br />
+      <div class="contest">
+          <div class="container ">
+              <div class="row">
+                  <div class="col-sm-12 wow flipInY">
+                      @using (Ajax.BeginForm("contestIndex", "Admin", new AjaxOptions { InsertionMode = InsertionMode.Replace }, FormMethod.Get))
+                      {
+                          <span>
+                              <b>Find by contest name</b> @Html.TextBox("search", ViewBag.CurrentFilter as string)
+                              <input type="submit" value="Search" class="btn btn-info" />
+                          </span>
+                      }
+                      <br />
+                      <table class="table table-striped table-bordered table-sm text-justify" cellspacing="0">
+                          <tr>
+                              <th>
+                                  Contest Name
+                                  <a href="@Url.Action("contestIndex","Admin", new { sortOrder = ViewBag.NameSort })">
+                                      <img src="~/images/updown.svg" alt="Alternate Text" style="width: 15px;" />
+                                  </a>
+                              </th>
+                              <th>
+                                  Create Date
+                                  <a href="@Url.Action("contestIndex","Admin", new { sortOrder = ViewBag.CreateDateSort })">
+                                      <img src="~/images/updown.svg" alt="Alternate Text" style="width: 15px;" />
+                                  </a>
+                              </th>
+                              <th>
+                                  Start Date
+                                  <a href="@Url.Action("contestIndex","Admin", new { sortOrder = ViewBag.StartDateSort })">
+                                      <img src="~/images/updown.svg" alt="Alternate Text" style="width: 15px;" />
+                                  </a>
+                              </th>
+                              <th>
+                                  End Date
+                                  <a href="@Url.Action("contestIndex","Admin", new { sortOrder = ViewBag.EndDateSort })">
+                                      <img src="~/images/updown.svg" alt="Alternate Text" style="width: 15px;" />
+                                  </a>
+                              </th>
+                              <th></th>
+                          </tr>
+
+                          @foreach (var item in Model)
+                          {
+                              <tr>
+                                  <td>
+                                      @Html.ActionLink(item.name, "contestRecipe", "Admin", new { id = item.id , endDate = item.endDate, winner = item.winner }, "")
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.createAt)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.startDate)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.endDate)
+                                  </td>
+                                  <td>
+                                      @Html.ActionLink("Edit", "contestEdit", new { id = item.id }, new { @class = "btn btn-success" })
+                                      @Html.ActionLink("Details", "contestDetails", new { id = item.id }, new { @class = "btn btn-warning" })
+                                      @Html.ActionLink("Delete", "contestDelete", new { id = item.id }, new { @class = "btn btn-danger" })
+                                  </td>
+                              </tr>
+                          }
+                      </table>
+                      <br />
+                      Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                      @Html.PagedListPager(Model, page => Url.Action("contestIndex",
+                          new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                  </div>
+              </div>
+          </div>
+      </div>
+
+

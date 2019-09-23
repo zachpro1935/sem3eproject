@@ -1,0 +1,74 @@
+﻿@model IEnumerable<eproject.Models.User>
+@{
+    ViewBag.Title = "user";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+                @using (Html.BeginForm())
+                {
+                    <div>
+                        <input name="search" id="search" class="" type="text" value="">
+                        <input name="" id="" class="btn btn-primary" type="submit" value="search">
+                    </div>
+                }
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.gender)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.phone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.expireDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.enabled)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.expireDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.enabled)
+                            </td>
+
+                            <td>
+                                @if (item.enabled == true)
+                                {
+                                    @Html.ActionLink("Disabled", "editUser", new { id = item.id, enabled = false })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Enabled", "editUser", new { id = item.id, enabled = true })
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </table>
